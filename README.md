@@ -1,5 +1,6 @@
 # Progetto-IoT
 Implementazione di un applicazione IoT utilizzando l'esp32 come client per l'acquisizione dei dati e utilizzo di Node-Red per l'implementazione della dashboard. Inoltre i dati attraverso la dashboard vengono salvati in un database.
+'sudo apt install'
 
 # Passaggi da seguire per implementare tutto il progetto
 I passaggi da seguire sono principalmente 4 e rappresentano gli strumenti che sono stati utilizzati. Per maggiori informazioni  sui passaggi di installazione aprire il pdf.
