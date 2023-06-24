@@ -1,5 +1,6 @@
 # Progetto-IoT
 Implementazione di un applicazione IoT utilizzando l'esp32 come client per l'acquisizione dei dati e utilizzo di Node-Red per l'implementazione della dashboard. Inoltre i dati attraverso la dashboard vengono salvati su un database.
+\\
 I componenti hardware che sono stati utilizzati sono i seguenti:
 1.ESP32-WROOM-32
 2.Sensore della temperatura e della pressione BMP280
