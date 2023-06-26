@@ -1,5 +1,5 @@
 # Progetto-IoT
-Implementazione di un applicazione IoT utilizzando l'esp32 come client per l'acquisizione dei dati e utilizzo di Node-Red per l'implementazione della dashboard. Inoltre i dati attraverso la dashboard vengono salvati su un database.
+Implementazione di un applicazione IoT utilizzando l'esp32 come client per l'acquisizione dei dati e una macchina virtuale con installato Ubuntu 22.04 come broker Mqtt. Utilizzo di Node-Red per l'implementazione della dashboard ed inoltre i dati attraverso la dashboard vengono salvati su un database.
 
 I componenti hardware utilizzati sono:
 * ESP32-WROOM-32
