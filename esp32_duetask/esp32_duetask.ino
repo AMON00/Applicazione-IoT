@@ -82,7 +82,7 @@ void setup() {
   client.setCallback(callback);
 
   //Task
-  xTaskCreate(task1_misure,"Task della data e ora",5000,NULL,2,NULL);
+  xTaskCreate(task1_misure,"Task delle misure",5000,NULL,2,NULL);
   xTaskCreate(task2_invio_dati,"Task stampa e invio dati",5000,NULL,1,NULL);
 }
 // Task utilizzato per l'acquisizione delle misure tramite i sensori.
