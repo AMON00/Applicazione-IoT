@@ -57,8 +57,7 @@ void setup() {
   rtc.begin();
   // Verifica che il modulo RTC è stato inizializzato correttamente o se ha perso alimentazione.
   if (! rtc.initialized() || rtc.lostPower()) {
-
-  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+      rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   }
   rtc.start();
 
@@ -88,22 +87,21 @@ void setup() {
 // Task utilizzato per l'acquisizione delle misure tramite i sensori.
 void task1_misure(void *param){
   sensors_event_t temp_event, pressure_event;
-  while(true){
-  //Lettura dell'ora e data
-  DateTime adesso = rtc.now();
-  tempo=adesso.timestamp(DateTime::TIMESTAMP_FULL);
-  // Lettura della temperatura
-  bmp_temp->getEvent(&temp_event);
-  temperatura=temp_event.temperature;
-  // Lettura della pressione 
-  bmp_pressure->getEvent(&pressure_event);
-  pressione=pressure_event.pressure;
-  // Lettura della luminosità
-  lux=BH1750.getLux();
-  BH1750.start();
-  // Configurazione nuova chiamata del task
-  vTaskDelay(600/portTICK_PERIOD_MS);
-  
+   while(true){
+      //Lettura dell'ora e data
+      DateTime adesso = rtc.now();
+      tempo=adesso.timestamp(DateTime::TIMESTAMP_FULL);
+      // Lettura della temperatura
+      bmp_temp->getEvent(&temp_event);
+      temperatura=temp_event.temperature;
+      // Lettura della pressione 
+      bmp_pressure->getEvent(&pressure_event);
+      pressione=pressure_event.pressure;
+      // Lettura della luminosità
+      lux=BH1750.getLux();
+      BH1750.start();
+      // Configurazione nuova chiamata del task
+     vTaskDelay(600/portTICK_PERIOD_MS);
   }
 }
 // Task utilizzato per l'invio dei dati al broker MQTT.
@@ -112,53 +110,53 @@ void task2_invio_dati(void *param){
   while(true){
     // Controllo utilizzato per la connessione al WiFi
     if (!client.connected()) {
-    reconnect();
+         reconnect();
   }
   
   client.loop();
   // Controllo per vedere se lo switch è on/off
   if(stato==true){
-  long now = millis();
-  // Controllo per invidare dati ogni 5 secondi
-  if (now - lastMsg > 5000) {
-    lastMsg = now;
-    // Conversione della data e dell'ora in un char array
-    Serial.println("Stampa del tempo:");
-    Serial.println(tempo);
-    char tempoString[20];
-    tempo.toCharArray(tempoString, 20);
-    // Utilizzato per pubblicare il valore della data e dell'ora in uno spazio specifico della dashboard
-    client.publish("data", tempoString);
-    // Conversione del valore della temperatura in un  char array
-    char tempString[8];
-    dtostrf(temperatura, 1, 2, tempString);
-    Serial.print("Temperatura: ");
-    Serial.println(tempString);
-    // Conversione del valore pressione in un char array.
-    char preString[8];
-    dtostrf(pressione, 1, 2, preString);
-    Serial.print("Pressione: ");
-    Serial.println(preString);
-    // Conversione del valore luminosità in un char array.
-    char lucString[8];
-    dtostrf(lux, 1, 2, lucString);
-    Serial.print("Luminosità: ");
-    Serial.println(lucString);
-    Serial.println();
-    // Pacchetto di dati che verrà pubblicato utilizzando il client MQTT attraverso il payload.
-    sprintf(payload, "\"%s\"_%s,",VARIABLE_temperatura, tempoString );
-    sprintf(payload, "%s \"%s\"_%s,", payload,VARIABLE_temperatura, tempString); 
-    sprintf(payload, "%s \"%s\"_%s,", payload,VARIABLE_pressione, preString);
-    sprintf(payload, "%s \"%s\"_%s", payload, VARIABLE_luminosita, lucString); 
-    client.publish("dati", payload);
-    //Messaggio "I dati vengono trasmessi" sul topic MQTT chiamato "on/off" utilizzando il client MQTT.
-    client.publish("on/off","I dati vengono trasmessi");
-    //Introduzione di un ritardo di 5K millesecondi nel task.
-    vTaskDelay(5000/portTICK_PERIOD_MS);
+     long now = millis();
+     // Controllo per invidare dati ogni 5 secondi
+     if (now - lastMsg > 5000) {
+       lastMsg = now;
+       // Conversione della data e dell'ora in un char array
+       Serial.println("Stampa del tempo:");
+       Serial.println(tempo);
+       char tempoString[20];
+       tempo.toCharArray(tempoString, 20);
+       // Utilizzato per pubblicare il valore della data e dell'ora in uno spazio specifico della dashboard
+       client.publish("data", tempoString);
+       // Conversione del valore della temperatura in un  char array
+       char tempString[8];
+       dtostrf(temperatura, 1, 2, tempString);
+       Serial.print("Temperatura: ");
+       Serial.println(tempString);
+       // Conversione del valore pressione in un char array.
+       char preString[8];
+       dtostrf(pressione, 1, 2, preString);
+       Serial.print("Pressione: ");
+       Serial.println(preString);
+       // Conversione del valore luminosità in un char array.
+       char lucString[8];
+       dtostrf(lux, 1, 2, lucString);
+       Serial.print("Luminosità: ");
+       Serial.println(lucString);
+       Serial.println();
+       // Pacchetto di dati costruito aggiungendo i vari char array che verrà pubblicato utilizzando il client MQTT attraverso il payload.
+       sprintf(payload, "\"%s\"_%s,",VARIABLE_temperatura, tempoString );
+       sprintf(payload, "%s \"%s\"_%s,", payload,VARIABLE_temperatura, tempString); 
+       sprintf(payload, "%s \"%s\"_%s,", payload,VARIABLE_pressione, preString);
+       sprintf(payload, "%s \"%s\"_%s", payload, VARIABLE_luminosita, lucString); 
+       client.publish("dati", payload);
+       //Messaggio "I dati vengono trasmessi" sul topic MQTT chiamato "on/off" utilizzando il client MQTT.
+       client.publish("on/off","I dati vengono trasmessi");
+       //Introduzione di un ritardo di 5K millesecondi nel task.
+       vTaskDelay(5000/portTICK_PERIOD_MS);
     }
   }
   else if(stato==false){
-    client.publish("on/off","I dati non vengono trasmessi");
+       client.publish("on/off","I dati non vengono trasmessi");
     }
 
 }}
@@ -170,12 +168,11 @@ void setup_wifi() {
   Serial.println();
   Serial.print("Connessione a ");
   Serial.println(ssid);
-
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
+       delay(500);
+        Serial.print(".");
   }
 
   Serial.println("");
