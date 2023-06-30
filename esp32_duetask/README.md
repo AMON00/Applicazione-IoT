@@ -7,6 +7,7 @@ Succesivamente si devono installare dalle libreire di arduino le seguenti librer
 * La libreria "hp_BH1750" per il sensore della luminosità
 * La libreria "RTClib" per quanto riguarda il sensore dell'ora e della data
 * La libreria "PubSubClient" per la comunicazione del nostro client con il broker MQTT
+*  La libreria "ArduinoJson" per il file json ricevuto da node-red attraverso il quale si estrae il timestamp per settare il PCF8523
 
 
 Alcune librerie che non sono state citate qui, ma sono state usate sono già scaricate attraverso la libreria della scheda ESP32; una volta che si hanno tutte le librerie a disposizione si può copiare il codice presente in "Esp32_duetask.ino" e utilizzarlo per il proprio progetto.
