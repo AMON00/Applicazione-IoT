@@ -9,4 +9,4 @@ Succesivamente si devono installare dalle libreire di arduino le seguenti librer
 * La libreria "PubSubClient" per la comunicazione del nostro client con il broker MQTT
 
 
-Alcune librerie che non sono state citate qui, ma sono state usate sono già scaricate attraverso la libreria della scheda ESP32; una volta che si hanno tutte le librerie a disposizione si può copiare il codice presente in "esp32_duetask.ino" e utilizzarlo per il proprio progetto.
+Alcune librerie che non sono state citate qui, ma sono state usate sono già scaricate attraverso la libreria della scheda ESP32; una volta che si hanno tutte le librerie a disposizione si può copiare il codice presente in "Esp32_duetask.ino" e utilizzarlo per il proprio progetto.
