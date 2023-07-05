@@ -1,5 +1,5 @@
 # Codice per l'ESP32
-Prima di copiare il codice presente in questa parte della repository si devono scaricare la seguente libreria della scheda dell'esp32 copiandola nelle impostazioni delle preferenze sul software di Arduino ide e mettendo il seguente Url: 
+Prima di copiare il codice presente in questa parte della repository si deve scaricare la seguente libreria della scheda dell'esp32 copiandola nelle impostazioni delle preferenze sul software di Arduino ide, si può fare copia e incolla del seguente Url: 
 ```
 https://espressif.github.io/arduino-esp32/package\esp32\index.json
 ```
