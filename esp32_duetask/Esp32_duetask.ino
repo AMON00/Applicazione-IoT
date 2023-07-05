@@ -90,9 +90,10 @@ void setup() {
 // Task utilizzato per l'acquisizione delle misure tramite i sensori.
 void task1_misure(void *param){
   sensors_event_t temp_event, pressure_event;
+  
   TickType_t xLastWakeTime;
   const TickType_t xFrequency = pdMS_TO_TICKS(600);
-  // Initialise the xLastWakeTime variable with the current time.
+  // Inizializzazione della variabile xLastWakeTime con il tempo attuale.
   xLastWakeTime = xTaskGetTickCount();
   
    while(true){
@@ -109,15 +110,16 @@ void task1_misure(void *param){
       lux=BH1750.getLux();
       BH1750.start();
       // Configurazione nuova chiamata del task
-     //vTaskDelay(600/portTICK_PERIOD_MS);
+     
      vTaskDelayUntil( &xLastWakeTime, xFrequency );
   }
 }
 // Task utilizzato per l'invio dei dati al broker MQTT.
 void task2_invio_dati(void *param){
+  
   TickType_t xLastWakeTime;
   const TickType_t xFrequency = pdMS_TO_TICKS(5000);
-  // Initialise the xLastWakeTime variable with the current time.
+  // Inizializzazione della variabile xLastWakeTime con il tempo attuale.
   xLastWakeTime = xTaskGetTickCount();
   while(true){
     // Controllo utilizzato per la connessione al WiFi
@@ -164,7 +166,6 @@ void task2_invio_dati(void *param){
        //Messaggio "I dati vengono trasmessi" sul topic MQTT chiamato "on/off" utilizzando il client MQTT.
        client.publish("on/off","I dati vengono trasmessi");
        //Introduzione di un ritardo di 5K millesecondi nel task.
-      // vTaskDelay(5000/portTICK_PERIOD_MS);
        vTaskDelayUntil( &xLastWakeTime, xFrequency );
     }
   }
