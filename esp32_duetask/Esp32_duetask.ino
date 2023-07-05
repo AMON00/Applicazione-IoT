@@ -185,8 +185,8 @@ void setup_wifi() {
 
   while (WiFi.status() != WL_CONNECTED) {
        delay(500);
-       Serial.print(".");
        WiFi.reconnect();
+       Serial.println("Riconnessione alla rete WiFi ...");
   }
 
   Serial.println("");
