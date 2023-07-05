@@ -184,9 +184,10 @@ void setup_wifi() {
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
-       delay(500);
+       // Funzione utilizzata per la riconnessione alla rete WiFi in caso di disconnessione
        WiFi.reconnect();
        Serial.println("Riconnessione alla rete WiFi ...");
+       delay(500);
   }
 
   Serial.println("");
