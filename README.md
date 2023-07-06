@@ -43,6 +43,11 @@ Una volta installato Node-Red per il suo avvito si utilizza:
 ```
 node-red
 ```
+Per avviare Node-Red in modo automatico appena si accende il sistema eseguire i seguenti comandi:
+```
+sudo systemctl enable node-red
+sudo systemctl start node-red
+```
 ### Installazione Xampp
 Per installare Xampp aprire il terminale e digitare le seguenti righe di comando:
 ```
@@ -52,6 +57,10 @@ sudo ./xampp-linux-x64-8.2.4-0-installer.run
 Una volta installato per il suo avvio digitare il seguente comando da terminale:
 ```
 sudo /opt/lampp/lampp start
+```
+Per avvviare Xampp in modo automatico appena si accende il sistema utilizzare il seguente comando:
+```
+sudo systemctl enable xampp.service
 ```
 
   
