@@ -1,7 +1,7 @@
 # Codice per l'ESP32
 Prima di copiare il codice presente in questa parte della repository si deve scaricare la seguente libreria della scheda dell'esp32 copiandola nelle impostazioni delle preferenze sul software di Arduino ide, si può fare copia e incolla del seguente Url: 
 ```
-https://espressif.github.io/arduino-esp32/package\esp32\index.json
+https://espressif.github.io/arduino-esp32/package_esp32_index.json
 ```
 
 Una volta fatto ciò è possibile scegliere la scheda da utilizzare che ovviamente è ESP32-WROOM e scegliere anche la porta seriale di comunicazione per caricare lo sketch.
